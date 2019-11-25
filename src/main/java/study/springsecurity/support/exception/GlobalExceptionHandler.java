@@ -16,10 +16,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(Throwable.class)
-    public Map<String, Object> handle(Exception ex) {
+    public String handle(Exception ex) {
         Map<String, Object> data = Maps.newHashMap();
         LOGGER.info("异常：", ex);
         data.put("code", "9999");
-        return data;
+        return "msg";
     }
 }
