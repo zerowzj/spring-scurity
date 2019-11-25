@@ -11,8 +11,8 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin() //表单登录
-                .loginPage("/login.html")     //设置登录跳转页面controller、也可以直接跳转页面
+        http.formLogin() //定义当需要用户登录时候，转到的登录页面
+                .loginPage("/login.html")     //设置登录跳转页面controller，也可以直接跳转页面
                 .loginProcessingUrl("/login") //自定义登录页面的表单提交地址
                 .and()
                 .authorizeRequests()
