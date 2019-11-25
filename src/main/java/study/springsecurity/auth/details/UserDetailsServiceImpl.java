@@ -1,4 +1,4 @@
-package study.springsecurity.auth.service;
+package study.springsecurity.auth.details;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import study.springsecurity.auth.details.CustomUserDetails;
 
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
