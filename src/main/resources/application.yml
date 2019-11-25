@@ -13,7 +13,7 @@ spring:
     cache: false
     prefix: classpath:/templats
     suffix: .html
-    mode: HTML5
+    mode: LEGACYHTML5
     encoding: UTF-8
     servlet:
       content-type: text/html
