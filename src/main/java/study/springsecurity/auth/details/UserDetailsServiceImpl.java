@@ -1,5 +1,6 @@
 package study.springsecurity.auth.details;
 
+import com.google.common.base.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        if (Strings.isNullOrEmpty(username)) {
+            throw new UsernameNotFoundException("用户名不能为空");
+        }
         LOGGER.info("加载用户[{}]的信息", username);
         if (!"wzj".equalsIgnoreCase(username)) {
             throw new UsernameNotFoundException("用户不存在");

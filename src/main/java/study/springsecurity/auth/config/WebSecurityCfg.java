@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 //@EnableWebSecurity
@@ -14,6 +15,8 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private AuthenticationSuccessHandler loginSuccessHandler;
 
     /**
      * （★）HTTP请求安全处理
@@ -25,10 +28,10 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .loginPage("/login.html") //登录跳转页面controller或页面
                 .loginProcessingUrl("/login") //登录表单提交地址
                 .defaultSuccessUrl("/main.html", true) //
-//                .successForwardUrl("/") //
-        //.failureUrl("/login.html?error")   //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
+                //.successForwardUrl("/") //
+                //.successHandler(loginSuccessHandler)
+                .failureUrl("/login.html?error") //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
         //.failureForwardUrl()
-        //.successHandler(null)
         //.failureHandler(null)
         ;
         //授权

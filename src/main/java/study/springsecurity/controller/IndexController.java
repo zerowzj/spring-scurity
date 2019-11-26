@@ -10,9 +10,9 @@ public class IndexController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
-    @RequestMapping("/")
-    public String demo() {
-        LOGGER.info("===================>");
-        return "index";
-    }
+//    @RequestMapping("/")
+//    public String demo() {
+//        LOGGER.info("===================>");
+//        return "index";
+//    }
 }
