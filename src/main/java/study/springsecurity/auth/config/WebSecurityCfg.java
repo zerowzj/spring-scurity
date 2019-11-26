@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -25,8 +24,8 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         http.formLogin() //需要用户登录时，转到的登录页面
                 .loginPage("/login.html") //登录跳转页面controller或页面
                 .loginProcessingUrl("/login") //登录表单提交地址
-                .defaultSuccessUrl("/main.html")  //
-        //.successForwardUrl("/main.html")
+                //.defaultSuccessUrl("/main.html")  //
+                .successForwardUrl("/main.html")
         //.successHandler(null)
         //.failureUrl("/login?error")   //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
         //.failureForwardUrl()
