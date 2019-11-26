@@ -19,6 +19,6 @@ public class LogoutSuccHandler implements LogoutSuccessHandler {
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,
                                 Authentication authentication) throws IOException, ServletException {
-        LOGGER.info("注销");
+        LOGGER.info("注销成功");
     }
 }
