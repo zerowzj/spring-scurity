@@ -12,7 +12,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 @Configuration
-//@EnableWebSecurity
 public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -30,7 +29,8 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //登录
-        http.formLogin() //需要用户登录时，转到的登录页面
+        http.httpBasic(); //basic 登录方式
+        http.formLogin() //表单登录，需要登录时，转到的登录页面
                 .loginPage("/login.html") //登录跳转页面controller或页面
                 //.usernameParameter("username")
                 //.passwordParameter("password")
@@ -43,9 +43,9 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .failureHandler(loginFailureHandler)
         ;
         //授权
-        http.authorizeRequests()
+        http.authorizeRequests() //请求授权
                 .antMatchers("/login**")
-                .permitAll()
+                .permitAll() //不需要权限认证
                 .anyRequest()  //任何请求
                 .authenticated() //需要身份认证
         ;
@@ -60,7 +60,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .accessDeniedPage("/403")
         ;
         //其他
-        http.csrf().disable()
+        http.csrf().disable() //关闭跨站请求防护
         ;
 
 //        http.httpBasic()
