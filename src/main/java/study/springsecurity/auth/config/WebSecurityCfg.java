@@ -23,7 +23,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //登录
         http.formLogin() //需要用户登录时，转到的登录页面
-                .loginPage("/index.html") //登录跳转页面controller或页面
+                .loginPage("/test.html") //登录跳转页面controller或页面
                 .loginProcessingUrl("/login") //登录表单提交地址
                 .defaultSuccessUrl("/main.html")  //
         //.successForwardUrl("/main.html")
@@ -56,7 +56,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 //                .and()
 //                //登录过滤器UsernamePasswordAuthenticationFilter默认登录的url是"/login"，在这能改
 //                .formLogin()
-//                .loginPage("/index.html")
+//                .loginPage("/test.html")
 //                .loginProcessingUrl("/beacon/user/login")      //默认登录的方法
 //                .successHandler(myAuthenticationSuccessHandler)//自定义的认证后处理器
 //                .failureHandler(myAuthenticationFailureHandler) //登录失败后的处理

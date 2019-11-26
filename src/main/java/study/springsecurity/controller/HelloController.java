@@ -15,10 +15,4 @@ public class HelloController {
         request.setAttribute("name", name);
         return "hello";
     }
-
-    @RequestMapping("/demo")
-    public String demo(){
-
-        return "demo";
-    }
 }
