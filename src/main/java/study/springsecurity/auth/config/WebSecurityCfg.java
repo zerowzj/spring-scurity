@@ -24,16 +24,16 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         http.formLogin() //需要用户登录时，转到的登录页面
                 .loginPage("/login.html") //登录跳转页面controller或页面
                 .loginProcessingUrl("/login") //登录表单提交地址
-                //.defaultSuccessUrl("/main.html")  //
-                .successForwardUrl("/main.html")
-        //.successHandler(null)
-        //.failureUrl("/login?error")   //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
+                .defaultSuccessUrl("/main.html?111")  //
+                .successForwardUrl("/main.html?222")
+        //.failureUrl("/login.html?error")   //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
         //.failureForwardUrl()
+        //.successHandler(null)
         //.failureHandler(null)
         ;
         //授权
         http.authorizeRequests()
-                .antMatchers("/", "/login**")
+                .antMatchers("/login**")
                 .permitAll()
                 .anyRequest()  //任何请求
                 .authenticated() //需要身份认证

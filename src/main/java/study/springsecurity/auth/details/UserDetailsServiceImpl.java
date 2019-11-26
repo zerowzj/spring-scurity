@@ -15,7 +15,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         LOGGER.info("加载用户[{}]的信息", username);
-        if ("wzj".equalsIgnoreCase(username)) {
+        if (!"wzj".equalsIgnoreCase(username)) {
             throw new UsernameNotFoundException("用户不存在");
         }
         UserDetails userDetails = new CustomUserDetails("wzj", "{noop}123");
