@@ -37,15 +37,16 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login") //登录表单提交地址
                 .defaultSuccessUrl("/main.html", true) //
                 //.successForwardUrl("/") //
-                .successHandler(loginSuccessHandler) //
+//                .successHandler(loginSuccessHandler) //
                 .failureUrl("/login.html?error") //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
                 //.failureForwardUrl()
-                .failureHandler(loginFailureHandler)
+//                .failureHandler(loginFailureHandler)
+                .permitAll()
         ;
         //授权
         http.authorizeRequests() //请求授权
-                .antMatchers("/login**")
-                .permitAll() //不需要权限认证
+//                .antMatchers("/login**")
+//                .permitAll() //不需要权限认证
                 .anyRequest()  //任何请求
                 .authenticated() //需要身份认证
         ;
@@ -59,6 +60,13 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         http.exceptionHandling()
                 .accessDeniedPage("/403")
         ;
+        //认证及授权
+//        http.sessionManagement()
+//                .invalidSessionUrl("/login.html?session_invalid")
+//                .maximumSessions(1)
+//                .maxSessionsPreventsLogin(false) // 当达到最大值时，是否保留已经登录的用户
+//                .expiredSessionStrategy(new CustomExpiredSessionStrategy()) // 当达到最大值时，旧用户被踢出后的操作
+//        ;
         //其他
         http.csrf().disable() //关闭跨站请求防护
         ;
