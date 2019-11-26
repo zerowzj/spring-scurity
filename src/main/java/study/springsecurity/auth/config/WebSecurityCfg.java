@@ -7,7 +7,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 @Configuration
 //@EnableWebSecurity
@@ -17,6 +19,10 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
     @Autowired
     private AuthenticationSuccessHandler loginSuccessHandler;
+    @Autowired
+    private AuthenticationFailureHandler loginFailureHandler;
+    @Autowired
+    private LogoutSuccessHandler logoutSuccessHandler;
 
     /**
      * （★）HTTP请求安全处理
