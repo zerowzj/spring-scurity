@@ -23,15 +23,15 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //登录
         http.formLogin() //需要用户登录时，转到的登录页面
-                .loginPage("/login.html")     //登录跳转页面controller或页面
+                .loginPage("/login.html") //登录跳转页面controller或页面
                 .loginProcessingUrl("/auth/login") //登录表单提交地址
-                //.defaultSuccessUrl("/index")  //
-                //.failureUrl("/login?error")   //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
+        //.defaultSuccessUrl("/index")  //
+        //.failureUrl("/login?error")   //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
         ;
         //注销
         http.logout()
                 .logoutUrl("/logout")  //
-                //.logoutSuccessUrl("/") //
+        //.logoutSuccessUrl("/") //
         ;
         //认证及授权
         http.authorizeRequests()
