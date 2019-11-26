@@ -9,12 +9,12 @@ public class DemoController {
     @RequestMapping("/")
     public String idnex(){
 
-        return "/login";
+        return "login";
     }
 
     @RequestMapping("/demo")
     public String demo(){
 
-        return "/demo";
+        return "demo";
     }
 }

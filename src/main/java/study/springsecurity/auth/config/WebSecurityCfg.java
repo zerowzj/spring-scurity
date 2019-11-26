@@ -15,7 +15,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     /**
-     * HTTP请求安全处理
+     * （★）HTTP请求安全处理
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -24,7 +24,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .loginPage("/login.html")     //登录跳转页面controller或页面
                 .loginProcessingUrl("/login") //登录表单提交地址
                 .defaultSuccessUrl("/index")  //
-                .failureUrl("/login/error")   //登录失败url，前端可以通过url中是否有error来提供友好的用户登入提示
+                .failureUrl("/login/error")   //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
         ;
         //注销
         http.logout()
@@ -48,14 +48,14 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * WEB安全
+     * （★）WEB安全
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
     }
 
     /**
-     * 身份验证管理器
+     * （★）身份验证管理器
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
