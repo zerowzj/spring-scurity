@@ -5,10 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
+@EnableWebSecurity
 public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -22,18 +24,18 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         //登录
         http.formLogin() //需要用户登录时，转到的登录页面
                 .loginPage("/login.html")     //登录跳转页面controller或页面
-                .loginProcessingUrl("/login") //登录表单提交地址
-                .defaultSuccessUrl("/index")  //
-                .failureUrl("/login/error")   //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
+                .loginProcessingUrl("/auth/login") //登录表单提交地址
+                //.defaultSuccessUrl("/index")  //
+                //.failureUrl("/login?error")   //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
         ;
         //注销
         http.logout()
                 .logoutUrl("/logout")  //
-                .logoutSuccessUrl("/") //
+                //.logoutSuccessUrl("/") //
         ;
         //认证及授权
         http.authorizeRequests()
-                .antMatchers("/login")
+                .antMatchers("/", "/login**")
                 .permitAll()
                 .anyRequest()  //默认其它的请求都需要认证，这里一定要添加
                 .authenticated()
