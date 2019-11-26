@@ -37,10 +37,10 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login") //登录表单提交地址
                 .defaultSuccessUrl("/main.html", true) //
                 //.successForwardUrl("/") //
-//                .successHandler(loginSuccessHandler) //
-                .failureUrl("/login.html?error") //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
+                .successHandler(loginSuccessHandler) //
+                .failureUrl("/login.html?login_failure") //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
                 //.failureForwardUrl()
-//                .failureHandler(loginFailureHandler)
+                .failureHandler(loginFailureHandler)
                 .permitAll()
         ;
         //授权
