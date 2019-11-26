@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-//@Configuration
+@Configuration
 //@EnableWebSecurity
 public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 
@@ -23,7 +23,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //登录
         http.formLogin() //需要用户登录时，转到的登录页面
-                .loginPage("/index.html") //登录跳转页面controller或页面
+                .loginPage("/login.html") //登录跳转页面controller或页面
                 .loginProcessingUrl("/login") //登录表单提交地址
                 .defaultSuccessUrl("/main.html")  //
         //.successForwardUrl("/main.html")
