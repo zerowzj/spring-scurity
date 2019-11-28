@@ -71,12 +71,12 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .accessDeniedPage("/403")
         ;
         //（☆）会话
-//        http.sessionManagement()
-//                .invalidSessionUrl("/login.html?session_invalid")
+        http.sessionManagement()
+                .invalidSessionUrl("/login.html?session_invalid")
 //                .maximumSessions(1)
 //                .maxSessionsPreventsLogin(false) // 当达到最大值时，是否保留已经登录的用户
 //                .expiredSessionStrategy(new CustomExpiredSessionStrategy()) // 当达到最大值时，旧用户被踢出后的操作
-//        ;
+        ;
         //（☆）其他
         http.csrf().disable() //关闭跨站请求防护
         ;
