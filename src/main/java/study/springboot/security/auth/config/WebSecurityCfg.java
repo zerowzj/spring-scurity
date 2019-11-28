@@ -115,7 +115,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-                .antMatchers("/static/**", "/asset-manifest.json");
+                .antMatchers("/static/**");
     }
 
     /**
