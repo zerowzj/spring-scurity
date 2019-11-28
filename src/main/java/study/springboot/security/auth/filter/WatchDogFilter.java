@@ -15,9 +15,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * 看门狗
- */
 @Component
 public class WatchDogFilter extends OncePerRequestFilter {
 
