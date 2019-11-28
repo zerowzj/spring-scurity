@@ -1,4 +1,4 @@
-package study.springsecurity.auth.config;
+package study.springboot.security.auth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

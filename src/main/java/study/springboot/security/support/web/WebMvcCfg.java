@@ -1,4 +1,4 @@
-package study.springsecurity.support.web;
+package study.springboot.security.support.web;
 
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
