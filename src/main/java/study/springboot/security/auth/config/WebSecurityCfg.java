@@ -29,7 +29,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //登录
-        http.httpBasic(); //basic 登录方式
+        http.httpBasic(); //Basic登录方式
         http.formLogin() //表单登录，需要登录时，转到的登录页面
                 .loginPage("/login.html") //登录跳转页面controller或页面
                 //.usernameParameter("username")
@@ -45,6 +45,8 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         ;
         //授权
         http.authorizeRequests() //请求授权
+//                .accessDecisionManager() //
+//                .withObjectPostProcessor() //
 //                .antMatchers("/login**")
 //                .permitAll() //不需要权限认证
                 .anyRequest()  //任何请求
