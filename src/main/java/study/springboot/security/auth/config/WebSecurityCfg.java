@@ -9,11 +9,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import study.springboot.security.auth.filter.WatchDogFilter;
 
 @Configuration
 public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private WatchDogFilter watchDogFilter;
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
@@ -28,7 +32,10 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //登录
+        //（☆）过滤器
+        http.addFilterBefore(watchDogFilter, UsernamePasswordAuthenticationFilter.class)
+        ;
+        //（☆）认证
         http.httpBasic(); //Basic登录方式
         http.formLogin() //表单登录，需要登录时，转到的登录页面
                 .loginPage("/login.html") //登录跳转页面controller或页面
@@ -43,7 +50,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .failureHandler(loginFailureHandler)
                 .permitAll()
         ;
-        //授权
+        //（☆）授权
         http.authorizeRequests() //请求授权
 //                .accessDecisionManager() //
 //                .withObjectPostProcessor() //
@@ -52,24 +59,24 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .anyRequest()  //任何请求
                 .authenticated() //需要身份认证
         ;
-        //注销
+        //（☆）注销
         http.logout()
                 .logoutUrl("/logout")  //
                 .logoutSuccessUrl("/login.html") //
                 .logoutSuccessHandler(logoutSuccessHandler)
         ;
-        //认证及授权
+        //（☆）
         http.exceptionHandling()
                 .accessDeniedPage("/403")
         ;
-        //认证及授权
+        //（☆）会话
 //        http.sessionManagement()
 //                .invalidSessionUrl("/login.html?session_invalid")
 //                .maximumSessions(1)
 //                .maxSessionsPreventsLogin(false) // 当达到最大值时，是否保留已经登录的用户
 //                .expiredSessionStrategy(new CustomExpiredSessionStrategy()) // 当达到最大值时，旧用户被踢出后的操作
 //        ;
-        //其他
+        //（☆）其他
         http.csrf().disable() //关闭跨站请求防护
         ;
 
