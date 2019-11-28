@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -27,14 +28,17 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     private AuthenticationFailureHandler loginFailureHandler;
     @Autowired
     private LogoutSuccessHandler logoutSuccessHandler;
+    @Autowired
+    private AccessDeniedHandler accessDeniedHandler;
 
     /**
-     * （★）HTTP请求安全处理
+     * （★）HTTP请求安全
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //（☆）过滤器
         http.addFilterBefore(watchDogFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilter(null)
         ;
         //（☆）认证
         http.httpBasic(); //Basic登录方式
@@ -60,16 +64,18 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .anyRequest()  //任何请求
                 .authenticated() //需要身份认证
         ;
+        //（☆）
+        http.exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler)
+                .accessDeniedPage("/403")
+        ;
         //（☆）注销
         http.logout()
                 .logoutUrl("/logout")  //
                 .logoutSuccessUrl("/login.html") //
                 .logoutSuccessHandler(logoutSuccessHandler)
         ;
-        //（☆）
-        http.exceptionHandling()
-                .accessDeniedPage("/403")
-        ;
+
         //（☆）会话
         http.sessionManagement()
                 .invalidSessionUrl("/login.html?session_invalid")
