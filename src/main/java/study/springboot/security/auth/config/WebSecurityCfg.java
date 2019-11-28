@@ -37,22 +37,23 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //（☆）过滤器
-        http.addFilterBefore(watchDogFilter, UsernamePasswordAuthenticationFilter.class)
-        ;
+//        http.addFilterBefore(watchDogFilter, UsernamePasswordAuthenticationFilter.class)
+//        ;
         //（☆）认证
 //        http.httpBasic(); //Basic登录方式
         http.formLogin() //表单登录，需要登录时，转到的登录页面
                 .loginPage("/login.html") //登录跳转页面controller或页面
-                .usernameParameter("username")
-                .passwordParameter("password")
                 .loginProcessingUrl("/login") //登录表单提交地址
-                //.defaultSuccessUrl("/main.html", true) //
+                .defaultSuccessUrl("/main.html", true) //
                 //.successForwardUrl("/") //
-                .successHandler(loginSuccessHandler) //登录成功处理器
+                //.successHandler(loginSuccessHandler) //登录成功处理器
                 .failureUrl("/login.html?login_failure") //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
                 //.failureForwardUrl()
                 .failureHandler(loginFailureHandler) //登录失败处理器
+                .usernameParameter("username")
+                .passwordParameter("password")
                 .permitAll()
+                .isCustomLoginPage()
         ;
         //（☆）授权
         http.authorizeRequests() //请求授权

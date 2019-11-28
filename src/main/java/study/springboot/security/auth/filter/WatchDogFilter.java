@@ -29,12 +29,11 @@ public class WatchDogFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //设置日志跟踪编号
         MDC.put("id", String.valueOf(UUID.randomUUID().hashCode() & 0x7fffffff));
-
-        LOGGER.info("{}", request.getRequestURI());
-        if (sessionKeyLt != null && !sessionKeyLt.isEmpty()) {
-            //
-            return;
-        }
+        LOGGER.info("请求url：{}", request.getRequestURI());
+//        if (sessionKeyLt != null && !sessionKeyLt.isEmpty()) {
+//            //
+//            return;
+//        }
 //        for (String key : sessionKeyLt) {
 //
 //        }
