@@ -16,10 +16,16 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginSuccessHandler.class);
 
+    private static final String DEFAULT_TARGET_URL = "/main.html";
+
+    private static final boolean ALWAYS_USER_DEFAULT_TARGET_URL = true;
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
-        LOGGER.info("登录成功");
+        this.setDefaultTargetUrl(DEFAULT_TARGET_URL);
+        this.setAlwaysUseDefaultTargetUrl(ALWAYS_USER_DEFAULT_TARGET_URL);
+        LOGGER.info("===>登录成功");
         super.onAuthenticationSuccess(request, response, authentication);
     }
 }

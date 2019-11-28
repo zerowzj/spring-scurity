@@ -46,7 +46,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .loginProcessingUrl("/login") //登录表单提交地址
-                .defaultSuccessUrl("/main.html", true) //
+                //.defaultSuccessUrl("/main.html", true) //
                 //.successForwardUrl("/") //
                 .successHandler(loginSuccessHandler) //登录成功处理器
                 .failureUrl("/login.html?login_failure") //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
