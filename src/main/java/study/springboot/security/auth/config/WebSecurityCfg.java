@@ -20,6 +20,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     private WatchDogFilter watchDogFilter;
     @Autowired
     private UserDetailsService userDetailsService;
+
     @Autowired
     private AuthenticationSuccessHandler loginSuccessHandler;
     @Autowired
@@ -110,11 +111,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-                .antMatchers("/static/**",
-                        "/asset-manifest.json",
-                        "/favicon.ico",
-                        "/manifest.json",
-                        "/service-worker.js");
+                .antMatchers("/static/**", "/asset-manifest.json");
     }
 
     /**
