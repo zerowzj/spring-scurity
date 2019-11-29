@@ -22,11 +22,6 @@ public class AccessDecisionCfg {
 
     @Autowired
     private AccessDecisionVoter voter;
-    @Autowired
-    private FilterInvocationSecurityMetadataSource metadataSource;
-    @Autowired
-    @Qualifier("metadataSource")
-    private LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> metadataSource;
 
     @Bean
     public AccessDecisionManager decisionManager() {
@@ -41,9 +36,9 @@ public class AccessDecisionCfg {
         return voter;
     }
 
-    @Bean
-    public FilterInvocationSecurityMetadataSource securityMetadataSource() {
-        FilterInvocationSecurityMetadataSource metadataSource = new DefaultFilterInvocationSecurityMetadataSource(metadataSource);
-        return metadataSource;
-    }
+//    @Bean
+//    public FilterInvocationSecurityMetadataSource securityMetadataSource() {
+//        FilterInvocationSecurityMetadataSource metadataSource = new DefaultFilterInvocationSecurityMetadataSource(metadataSource);
+//        return metadataSource;
+//    }
 }
