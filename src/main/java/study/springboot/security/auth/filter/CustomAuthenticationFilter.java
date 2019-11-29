@@ -10,9 +10,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CustomLoginFilter extends UsernamePasswordAuthenticationFilter {
+public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CustomLoginFilter.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomAuthenticationFilter.class);
 
     private String captchaParameter = "authCode";
 
