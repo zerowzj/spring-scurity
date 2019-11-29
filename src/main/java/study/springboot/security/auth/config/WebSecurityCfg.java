@@ -90,36 +90,13 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 //                .invalidSessionStrategy(invalidSessionStrategy)
                 .maximumSessions(1)
                 .maxSessionsPreventsLogin(false) //当达到最大值时，是否保留已经登录的用户
-                //.sessionRegistry()
+        //.sessionRegistry()
 //                .expiredUrl("")
 //                .expiredSessionStrategy(expiredSessionStrategy) //当达到最大值时，旧用户被踢出后的操作
         ;
         //（▲）其他
         http.csrf().disable() //关闭跨站请求防护
         ;
-
-//        http.httpBasic()
-//                .and()
-//                //登录过滤器UsernamePasswordAuthenticationFilter默认登录的url是"/login"，在这能改
-//                .formLogin()
-//                .loginPage("/index1111.html")
-//                .loginProcessingUrl("/beacon/user/login")      //默认登录的方法
-//                .successHandler(myAuthenticationSuccessHandler)//自定义的认证后处理器
-//                .failureHandler(myAuthenticationFailureHandler) //登录失败后的处理
-//                .and()
-//                .authorizeRequests() //下面是授权的配置
-//                .antMatchers("/beacon/user/login",
-//                        securityProperties.getBrowser().getLoginPage(),//放过登录页不过滤，否则报错
-//                        "/beacon/user/valicode",
-//                        "/beacon/user/getMaxVersion",
-//                        "/beacon/user/getMyData"
-//                ).permitAll()
-//                .anyRequest()        //任何请求
-//                .authenticated()    //都需要身份认证
-//                .and()
-//                .csrf()
-//                .disable() //关闭csrf防护
-//        ;
     }
 
     /**
