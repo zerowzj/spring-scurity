@@ -14,7 +14,7 @@ import java.io.IOException;
 @Component
 public class LogoutSuccHandler implements LogoutSuccessHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginFailureHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationFailureHandler.class);
 
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,

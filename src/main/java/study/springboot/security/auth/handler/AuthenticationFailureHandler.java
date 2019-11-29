@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+public class AuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginFailureHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationFailureHandler.class);
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,

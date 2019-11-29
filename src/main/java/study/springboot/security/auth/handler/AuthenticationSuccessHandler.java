@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginSuccessHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationSuccessHandler.class);
 
     private static final String DEFAULT_TARGET_URL = "/main.html";
 
