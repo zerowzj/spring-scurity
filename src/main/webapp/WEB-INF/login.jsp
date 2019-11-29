@@ -18,7 +18,7 @@
             </ul>
         </dd>
         <dd id="user_main">
-            <form action="/login.html" method="post">
+            <form action="/doLogin" method="post">
                 <ul>
                     <li class="user_main_l"></li>
                     <li class="user_main_c">
