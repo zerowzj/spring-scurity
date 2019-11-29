@@ -67,8 +67,8 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         http.authorizeRequests() //请求授权
                 //.accessDecisionManager() //
                 //.withObjectPostProcessor() //
-                //.antMatchers("/login**")
-                //.permitAll() //不需要权限认证
+//                .antMatchers("/view/**")
+//                .permitAll() //不需要权限认证
                 .anyRequest()  //任何请求
                 .authenticated() //需要身份认证
         ;
