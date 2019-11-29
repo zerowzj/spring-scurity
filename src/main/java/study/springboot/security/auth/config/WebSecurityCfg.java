@@ -66,7 +66,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         //（▲）授权
         http.authorizeRequests() //请求授权
                 //.accessDecisionManager() //
-                //.withObjectPostProcessor() //
+//                .withObjectPostProcessor() //
 //                .antMatchers("/view/**")
 //                .permitAll() //不需要权限认证
                 .anyRequest()  //任何请求
@@ -81,7 +81,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         //（▲）注销
         http.logout()
                 .logoutUrl("/doLogout")  //注销url
-                .logoutSuccessUrl("/login.html") //注销成功url
+                .logoutSuccessUrl("/login.html?logout_success") //注销成功url
         //.logoutSuccessHandler(logoutSuccessHandler) //注销成功处理器
         ;
         //（▲）会话
