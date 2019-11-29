@@ -11,10 +11,10 @@ spring:
   #####################
   #
   #####################
-  devtools:
-    restart:
-      enabled: true
-      additional-paths: src/main/java
+#  devtools:
+#    restart:
+#      enabled: true
+#      additional-paths: src/main/java
   #####################
   #JSP
   #####################

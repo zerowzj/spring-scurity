@@ -2,12 +2,16 @@ package study.springboot.security.auth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.AccessDecisionManager;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -38,6 +42,11 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomInvalidSessionStrategy invalidSessionStrategy;
 
+    @Autowired
+    AccessDecisionManager accessDecisionManager;
+    @Autowired
+    FilterInvocationSecurityMetadataSource securityMetadataSource;
+
     /**
      * （★）HTTP请求安全
      */
@@ -61,12 +70,20 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 //.failureHandler(loginFailureHandler) //登录失败处理器
                 .usernameParameter("loginName")
                 .passwordParameter("loginPwd")
+                //.authenticationDetailsSource() //
                 .permitAll()
         ;
         //（▲）授权
         http.authorizeRequests() //请求授权
                 //.accessDecisionManager() //
-//                .withObjectPostProcessor() //
+                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
+                    @Override
+                    public FilterSecurityInterceptor postProcess(FilterSecurityInterceptor interceptor) {
+                        interceptor.setAccessDecisionManager(accessDecisionManager);
+                        interceptor.setSecurityMetadataSource(securityMetadataSource);
+                        return interceptor;
+                    }
+                }) //
 //                .antMatchers("/view/**")
 //                .permitAll() //不需要权限认证
                 .anyRequest()  //任何请求
