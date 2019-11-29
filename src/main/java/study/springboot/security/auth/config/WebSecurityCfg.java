@@ -51,12 +51,12 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         http.httpBasic();
         //表单登录
         http.formLogin() //需要登录时，转到的登录页面
-                .loginPage("/login.html") //登录跳转页面controller或页面
+                .loginPage("/login.jsp") //登录跳转页面controller或页面
                 .loginProcessingUrl("/doLogin") //登录表单提交地址
-                .defaultSuccessUrl("/main.html", true) //默认登录成功url
+                .defaultSuccessUrl("/main.jsp", true) //默认登录成功url
                 //.successForwardUrl("/") //登录成功跳转url
                 //.successHandler(loginSuccessHandler) //登录成功处理器
-                .failureUrl("/login.html?login_failure") //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
+                .failureUrl("/login.jsp?login_failure") //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
                 //.failureForwardUrl() //登录失败跳转url
                 //.failureHandler(loginFailureHandler) //登录失败处理器
                 .usernameParameter("username")
@@ -81,18 +81,18 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         //（▲）注销
         http.logout()
                 .logoutUrl("/logout")  //注销url
-                .logoutSuccessUrl("/login.html") //注销成功url
+                .logoutSuccessUrl("/login.jsp") //注销成功url
         //.logoutSuccessHandler(logoutSuccessHandler) //注销成功处理器
         ;
         //（▲）会话
         http.sessionManagement()
                 .invalidSessionUrl("/login.html?session_invalid") //
-                .invalidSessionStrategy(invalidSessionStrategy)
+//                .invalidSessionStrategy(invalidSessionStrategy)
                 .maximumSessions(1)
                 .maxSessionsPreventsLogin(false) //当达到最大值时，是否保留已经登录的用户
                 //.sessionRegistry()
-                .expiredUrl("")
-                .expiredSessionStrategy(expiredSessionStrategy) //当达到最大值时，旧用户被踢出后的操作
+//                .expiredUrl("")
+//                .expiredSessionStrategy(expiredSessionStrategy) //当达到最大值时，旧用户被踢出后的操作
         ;
         //（▲）其他
         http.csrf().disable() //关闭跨站请求防护
