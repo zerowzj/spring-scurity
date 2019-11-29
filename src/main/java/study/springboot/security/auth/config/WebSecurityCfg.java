@@ -1,7 +1,6 @@
 package study.springboot.security.auth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +13,8 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import study.springboot.security.auth.filter.WatchDogFilter;
+import study.springboot.security.auth.session.CustomExpiredSessionStrategy;
+import study.springboot.security.auth.session.CustomInvalidSessionStrategy;
 
 @Configuration
 public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
@@ -32,6 +33,11 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
 
+    @Autowired
+    private CustomExpiredSessionStrategy expiredSessionStrategy;
+    @Autowired
+    private CustomInvalidSessionStrategy invalidSessionStrategy;
+
     /**
      * （★）HTTP请求安全
      */
@@ -46,7 +52,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         //表单登录
         http.formLogin() //需要登录时，转到的登录页面
                 .loginPage("/login.html") //登录跳转页面controller或页面
-                .loginProcessingUrl("/login") //登录表单提交地址
+                .loginProcessingUrl("/doLogin") //登录表单提交地址
                 .defaultSuccessUrl("/main.html", true) //默认登录成功url
                 //.successForwardUrl("/") //登录成功跳转url
                 //.successHandler(loginSuccessHandler) //登录成功处理器
@@ -78,13 +84,15 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login.html") //注销成功url
         //.logoutSuccessHandler(logoutSuccessHandler) //注销成功处理器
         ;
-        SecurityProperties securityProperties ;
-        //（☆）会话
+        //（▲）会话
         http.sessionManagement()
-                .invalidSessionUrl("/login.html?session_invalid")
-//                .maximumSessions(1)
-//                .maxSessionsPreventsLogin(false) // 当达到最大值时，是否保留已经登录的用户
-//                .expiredSessionStrategy(new CustomExpiredSessionStrategy()) // 当达到最大值时，旧用户被踢出后的操作
+                .invalidSessionUrl("/login.html?session_invalid") //
+                .invalidSessionStrategy(invalidSessionStrategy)
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(false) //当达到最大值时，是否保留已经登录的用户
+                //.sessionRegistry()
+                .expiredUrl("")
+                .expiredSessionStrategy(expiredSessionStrategy) //当达到最大值时，旧用户被踢出后的操作
         ;
         //（▲）其他
         http.csrf().disable() //关闭跨站请求防护
