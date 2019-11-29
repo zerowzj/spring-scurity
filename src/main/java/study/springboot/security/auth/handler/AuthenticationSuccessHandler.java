@@ -16,7 +16,7 @@ public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccess
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationSuccessHandler.class);
 
-    private static final String DEFAULT_TARGET_URL = "/main.html";
+    private static final String DEFAULT_TARGET_URL = "/demo.html";
 
     private static final boolean ALWAYS_USER_DEFAULT_TARGET_URL = true;
 
