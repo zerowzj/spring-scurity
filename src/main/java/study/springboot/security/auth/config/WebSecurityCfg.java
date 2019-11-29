@@ -75,7 +75,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         ;
         //（▲）授权
         http.authorizeRequests() //请求授权
-                //.accessDecisionManager() //
+                .accessDecisionManager(accessDecisionManager) //
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
                     @Override
                     public FilterSecurityInterceptor postProcess(FilterSecurityInterceptor interceptor) {
@@ -91,8 +91,8 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         ;
         //（▲）
         http.exceptionHandling()
-                .accessDeniedPage("/403") //无权页面
-        //.accessDeniedHandler(accessDeniedHandler) //无权处理器
+//                .accessDeniedPage("/403") //无权页面
+        .accessDeniedHandler(accessDeniedHandler) //无权处理器
         //.authenticationEntryPoint() //认证入口
         ;
         //（▲）注销
