@@ -12,11 +12,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class AccessDecisionCfg {
 
-    @Autowired
-    private AccessDecisionVoter voter;
-
     @Bean
-    public AccessDecisionManager decisionManager() {
+    public AccessDecisionManager decisionManager(@Autowired AccessDecisionVoter voter) {
         AffirmativeBased manager = new AffirmativeBased(Lists.newArrayList(voter));
         return manager;
     }

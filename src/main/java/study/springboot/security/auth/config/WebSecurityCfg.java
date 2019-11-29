@@ -43,9 +43,9 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     private CustomInvalidSessionStrategy invalidSessionStrategy;
 
     @Autowired
-    AccessDecisionManager accessDecisionManager;
+    private AccessDecisionManager accessDecisionManager;
     @Autowired
-    FilterInvocationSecurityMetadataSource securityMetadataSource;
+    private FilterInvocationSecurityMetadataSource securityMetadataSource;
 
     /**
      * （★）HTTP请求安全
@@ -62,7 +62,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         http.formLogin() //需要登录时，转到的登录页面
                 .loginPage("/login.html") //登录跳转页面controller或页面
                 .loginProcessingUrl("/doLogin") //登录表单提交地址
-                .defaultSuccessUrl("/demo.html", true) //默认登录成功url
+                .defaultSuccessUrl("/main.html", true) //默认登录成功url
                 //.successForwardUrl("/") //登录成功跳转url
                 //.successHandler(loginSuccessHandler) //登录成功处理器
                 .failureUrl("/login.html?login_failure") //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
@@ -75,7 +75,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         ;
         //（▲）授权
         http.authorizeRequests() //请求授权
-                .accessDecisionManager(accessDecisionManager) //
+//                .accessDecisionManager(accessDecisionManager) //
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
                     @Override
                     public FilterSecurityInterceptor postProcess(FilterSecurityInterceptor interceptor) {

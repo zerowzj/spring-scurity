@@ -26,7 +26,7 @@ public class SecurityMetadataSourceCfg {
     public LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> getRequestMap() {
         LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> metadataSource = new LinkedHashMap<>();
         List<ConfigAttribute> configAttrLt = Lists.newArrayList();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 1; i++) {
             String pfPath = "/demo" + (i + 1);
             AntPathRequestMatcher matcher = new AntPathRequestMatcher(pfPath + "*");
             configAttrLt.add(new SecurityConfig(pfPath));
