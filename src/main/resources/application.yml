@@ -8,14 +8,25 @@ logging:
 spring:
   application:
     name: study-spring-security
+  #####################
+  #
+  #####################
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+  #####################
+  #JSP
+  #####################
   mvc:
     static-path-pattern: /**
-    #####################
-    #JSP
-    #####################
+
   #    view:
   #      prefix: /WEB-INF/jsp/
   #      suffix: .jsp
+  #####################
+  #Thymeleaf
+  #####################
   resources:
     static-locations: classpath:/static/
   #####################
@@ -24,6 +35,7 @@ spring:
   thymeleaf:
     #开启模板缓存（默认值：true）
     enabled: true
+    #
     prefix: classpath:/templates/
     suffix: .html
     #开发时关闭缓存,不然没法看到实时页面
@@ -38,4 +50,3 @@ spring:
     mode: HTML5
     servlet:
       content-type: text/html
-

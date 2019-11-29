@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private List<SimpleGrantedAuthority> getGrantedLt() {
         List<SimpleGrantedAuthority> grantedLt = Lists.newArrayList();
-        grantedLt.add(new SimpleGrantedAuthority(""));
+        grantedLt.add(new SimpleGrantedAuthority("/test"));
         return grantedLt;
     }
 }

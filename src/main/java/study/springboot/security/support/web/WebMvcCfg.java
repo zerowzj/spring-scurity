@@ -15,17 +15,17 @@ public class WebMvcCfg implements WebMvcConfigurer {
     private static final Logger LOGGER = LoggerFactory.getLogger(WebMvcCfg.class);
 
     /**
-     *
+     * 控制器
      */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/")
-                .setViewName("main");
+                .setViewName("redirect:main.html");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 
     /**
-     *
+     * 拦截器
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -33,7 +33,7 @@ public class WebMvcCfg implements WebMvcConfigurer {
     }
 
     /**
-     *
+     * 资源处理器
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
