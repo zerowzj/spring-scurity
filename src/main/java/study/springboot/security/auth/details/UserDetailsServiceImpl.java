@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (!"wzj".equalsIgnoreCase(username)) {
             throw new UsernameNotFoundException("用户不存在");
         }
-        UserDetails userDetails = new CustomUserDetails("wzj", "{noop}123", getGrantedLt());
+        UserDetails userDetails = new CustomUserDetails("wzj", "{noop}123",null);
         return userDetails;
     }
 

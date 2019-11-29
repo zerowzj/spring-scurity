@@ -48,7 +48,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         ;
         //（▲）认证
         //Basic登录
-        http.httpBasic();
+//        http.httpBasic();
         //表单登录
         http.formLogin() //需要登录时，转到的登录页面
                 .loginPage("/login.html") //登录跳转页面controller或页面
@@ -59,8 +59,8 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .failureUrl("/login.html?login_failure") //登录失败url，前端可通过url中是否有error来提供友好的用户登入提示
                 //.failureForwardUrl() //登录失败跳转url
                 //.failureHandler(loginFailureHandler) //登录失败处理器
-                .usernameParameter("username")
-                .passwordParameter("password")
+                .usernameParameter("loginName")
+                .passwordParameter("loginPwd")
                 .permitAll()
         ;
         //（▲）授权
