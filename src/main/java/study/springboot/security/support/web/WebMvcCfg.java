@@ -20,7 +20,7 @@ public class WebMvcCfg implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/")
-                .setViewName("redirect:demo.html");
+                .setViewName("redirect:main.html");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 

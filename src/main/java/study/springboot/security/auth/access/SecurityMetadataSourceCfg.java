@@ -24,14 +24,13 @@ public class SecurityMetadataSourceCfg {
     }
 
     public LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> getRequestMap() {
-        LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> metadataSource = new LinkedHashMap<>();
-        List<ConfigAttribute> configAttrLt = Lists.newArrayList();
+        LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<>();
         for (int i = 0; i < 5; i++) {
             String pfPath = "/demo" + (i + 1);
             AntPathRequestMatcher matcher = new AntPathRequestMatcher(pfPath + "*");
-            configAttrLt.add(new SecurityConfig(pfPath));
-            metadataSource.put(matcher, configAttrLt);
+            List<ConfigAttribute> configAttrLt = Lists.newArrayList(new SecurityConfig(pfPath));
+            requestMap.put(matcher, configAttrLt);
         }
-        return metadataSource;
+        return requestMap;
     }
 }

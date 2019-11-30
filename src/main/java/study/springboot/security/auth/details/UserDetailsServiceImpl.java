@@ -26,14 +26,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (!"wzj".equalsIgnoreCase(username)) {
             throw new UsernameNotFoundException("用户不存在");
         }
-        UserDetails userDetails = new CustomUserDetails("wzj", "{noop}123",null);
+        UserDetails userDetails = new CustomUserDetails("wzj", "{noop}123",getGrantedLt());
         return userDetails;
     }
 
     private List<SimpleGrantedAuthority> getGrantedLt() {
         List<SimpleGrantedAuthority> grantedLt = Lists.newArrayList();
         grantedLt.add(new SimpleGrantedAuthority("/demo1"));
-//        grantedLt.add(new SimpleGrantedAuthority("/a-2"));
         return grantedLt;
     }
 }

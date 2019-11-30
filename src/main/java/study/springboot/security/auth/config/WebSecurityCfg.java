@@ -93,8 +93,8 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         ;
         //（▲）
         http.exceptionHandling()
-//                .accessDeniedPage("/403.html") //无权页面
-        .accessDeniedHandler(accessDeniedHandler) //无权处理器
+                .accessDeniedPage("/403.html") //无权页面
+//        .accessDeniedHandler(accessDeniedHandler) //无权处理器
         //.authenticationEntryPoint() //认证入口
         ;
         //（▲）注销
