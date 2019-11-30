@@ -12,13 +12,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @Component
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomAccessDeniedHandler.class);
 
-    private String errorPage;
+    private String errorPage = "/erro";
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response,
@@ -26,17 +27,23 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
         String ajaxRequest = request.getHeader("X-Requested-With");
         // Set the 403 status code.
-        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+//        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         if ("XMLHttpRequest".equals(ajaxRequest)) {
             LOGGER.info("ssssssssssssssssssss");
         } else {
-            // Put exception into request scope (perhaps of use to a view)
-            request.setAttribute(WebAttributes.ACCESS_DENIED_403, accessDeniedException);
-            // Set the 403 status code.
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            // forward to error page.
-            RequestDispatcher dispatcher = request.getRequestDispatcher(errorPage);
-            dispatcher.forward(request, response);
+//            // Put exception into request scope (perhaps of use to a view)
+//            request.setAttribute(WebAttributes.ACCESS_DENIED_403, accessDeniedException);
+//            // Set the 403 status code.
+//            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+//            // forward to error page.
+//            RequestDispatcher dispatcher = request.getRequestDispatcher(errorPage);
+//            dispatcher.forward(request, response);
+//            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            response.setContentType("application/json;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.write("{\"status\":\"error\",\"msg\":\"权限不足，请联系管理员!\"}");
+            out.flush();
+            out.close();
         }
     }
 

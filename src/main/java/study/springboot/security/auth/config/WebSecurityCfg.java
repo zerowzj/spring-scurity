@@ -3,6 +3,7 @@ package study.springboot.security.auth.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -79,6 +80,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
                     @Override
                     public FilterSecurityInterceptor postProcess(FilterSecurityInterceptor interceptor) {
+//                        interceptor.setAuthenticationManager(authenticationManager);
                         interceptor.setAccessDecisionManager(accessDecisionManager);
                         interceptor.setSecurityMetadataSource(securityMetadataSource);
                         return interceptor;
@@ -91,7 +93,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         ;
         //（▲）
         http.exceptionHandling()
-//                .accessDeniedPage("/403") //无权页面
+//                .accessDeniedPage("/403.html") //无权页面
         .accessDeniedHandler(accessDeniedHandler) //无权处理器
         //.authenticationEntryPoint() //认证入口
         ;
