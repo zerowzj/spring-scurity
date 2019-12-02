@@ -17,6 +17,8 @@ import java.util.List;
 @Component
 public class SecurityMetadataSourceCfg {
 
+    private List<String> pathLt = Lists.newArrayList("/demo1", "/demo2", "/demo3");
+
     @Bean
     public FilterInvocationSecurityMetadataSource securityMetadataSource() {
         FilterInvocationSecurityMetadataSource metadataSource = new DefaultFilterInvocationSecurityMetadataSource(getRequestMap());
@@ -25,10 +27,9 @@ public class SecurityMetadataSourceCfg {
 
     private LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> getRequestMap() {
         LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<>();
-        for (int i = 0; i < 5; i++) {
-            String pfPath = "/demo" + (i + 1);
-            AntPathRequestMatcher matcher = new AntPathRequestMatcher(pfPath + "*");
-            List<ConfigAttribute> configAttrLt = Lists.newArrayList(new SecurityConfig(pfPath));
+        for (String path : pathLt) {
+            AntPathRequestMatcher matcher = new AntPathRequestMatcher(path + "*");
+            List<ConfigAttribute> configAttrLt = Lists.newArrayList(new SecurityConfig(path));
             requestMap.put(matcher, configAttrLt);
         }
         return requestMap;
