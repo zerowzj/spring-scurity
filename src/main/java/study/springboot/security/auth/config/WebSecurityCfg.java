@@ -57,7 +57,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         ;
         //（▲）认证
         //Basic登录
-//        http.httpBasic();
+        //http.httpBasic();
         //表单登录
         http.formLogin() //需要登录时，转到的登录页面
                 .loginPage("/login.html") //登录跳转页面controller或页面
@@ -75,25 +75,24 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         ;
         //（▲）授权
         http.authorizeRequests() //请求授权
-//                .accessDecisionManager(accessDecisionManager) //
+                //.accessDecisionManager(accessDecisionManager) //
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
                     @Override
                     public FilterSecurityInterceptor postProcess(FilterSecurityInterceptor interceptor) {
-//                        interceptor.setAuthenticationManager(authenticationManager);
                         interceptor.setAccessDecisionManager(accessDecisionManager);
                         interceptor.setSecurityMetadataSource(securityMetadataSource);
                         return interceptor;
                     }
-                }) //
-//                .antMatchers("/view/**")
-//                .permitAll() //不需要权限认证
+                })
+                //.antMatchers("/view/**")
+                //.permitAll() //不需要权限认证
                 .anyRequest()  //任何请求
                 .authenticated() //需要身份认证
         ;
         //（▲）
         http.exceptionHandling()
                 .accessDeniedPage("/403.html") //无权页面
-//        .accessDeniedHandler(accessDeniedHandler) //无权处理器
+        //.accessDeniedHandler(accessDeniedHandler) //无权处理器
         //.authenticationEntryPoint() //认证入口
         ;
         //（▲）注销
@@ -105,12 +104,12 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         //（▲）会话
         http.sessionManagement()
                 .invalidSessionUrl("/login.html?session_invalid") //
-//                .invalidSessionStrategy(invalidSessionStrategy)
+                //.invalidSessionStrategy(invalidSessionStrategy)
                 .maximumSessions(1)
                 .maxSessionsPreventsLogin(false) //当达到最大值时，是否保留已经登录的用户
         //.sessionRegistry()
-//                .expiredUrl("")
-//                .expiredSessionStrategy(expiredSessionStrategy) //当达到最大值时，旧用户被踢出后的操作
+        //.expiredUrl("")
+        //.expiredSessionStrategy(expiredSessionStrategy) //当达到最大值时，旧用户被踢出后的操作
         ;
         //（▲）
         http.csrf().disable() //关闭跨站请求防护
