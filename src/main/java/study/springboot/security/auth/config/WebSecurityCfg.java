@@ -3,7 +3,6 @@ package study.springboot.security.auth.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -113,13 +112,13 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 //                .expiredUrl("")
 //                .expiredSessionStrategy(expiredSessionStrategy) //当达到最大值时，旧用户被踢出后的操作
         ;
-        //（▲）其他
+        //（▲）
         http.csrf().disable() //关闭跨站请求防护
         ;
-
-//        http.headers()
-//                .frameOptions()
-//                .sameOrigin();
+        //（▲）
+        http.headers()
+                .frameOptions()
+                .sameOrigin();
     }
 
     /**
