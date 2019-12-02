@@ -23,7 +23,7 @@ public class SecurityMetadataSourceCfg {
         return metadataSource;
     }
 
-    public LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> getRequestMap() {
+    private LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> getRequestMap() {
         LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<>();
         for (int i = 0; i < 5; i++) {
             String pfPath = "/demo" + (i + 1);
