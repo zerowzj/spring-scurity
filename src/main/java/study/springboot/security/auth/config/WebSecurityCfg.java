@@ -116,6 +116,10 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         //（▲）其他
         http.csrf().disable() //关闭跨站请求防护
         ;
+
+//        http.headers()
+//                .frameOptions()
+//                .sameOrigin();
     }
 
     /**
