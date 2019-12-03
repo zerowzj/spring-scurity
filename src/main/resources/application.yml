@@ -9,9 +9,10 @@ spring:
   application:
     name: study-spring-security
   redis:
-    host: 127.0.0.1
-    port: 2379
+    host: 114.67.102.8
+    port: 6379
     database: 0
+    password: abc123
   #####################
   #
   #####################
