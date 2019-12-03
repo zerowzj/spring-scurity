@@ -1,5 +1,7 @@
 package study.springboot.security.auth.session;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.web.session.InvalidSessionStrategy;
 import org.springframework.stereotype.Component;
 
@@ -11,9 +13,11 @@ import java.io.IOException;
 @Component
 public class CustomInvalidSessionStrategy implements InvalidSessionStrategy {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomExpiredSessionStrategy.class);
+
     @Override
     public void onInvalidSessionDetected(HttpServletRequest request,
                                          HttpServletResponse response) throws IOException, ServletException {
-
+        LOGGER.info("");
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
@@ -103,13 +104,16 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
         ;
         //（▲）会话
         http.sessionManagement()
-                .invalidSessionUrl("/login.html?session_invalid") //
-                //.invalidSessionStrategy(invalidSessionStrategy)
-                .maximumSessions(1)
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) //创建session时机
+                .enableSessionUrlRewriting(false)
+                .invalidSessionUrl("/login.html?session_invalid") //设置Session失效跳转页面
+                .invalidSessionStrategy(invalidSessionStrategy)
+                .maximumSessions(1) //设置最大Session数为1
                 .maxSessionsPreventsLogin(false) //当达到最大值时，是否保留已经登录的用户
-        //.sessionRegistry()
-        //.expiredUrl("")
-        //.expiredSessionStrategy(expiredSessionStrategy) //当达到最大值时，旧用户被踢出后的操作
+//                .sessionRegistry()
+                .expiredUrl("/login.html?session_expired") //
+                .expiredSessionStrategy(expiredSessionStrategy) //设置Session过期处理策略
+                .maxSessionsPreventsLogin(true) //前登录禁后登录
         ;
         //（▲）
         http.csrf().disable() //关闭跨站请求防护
