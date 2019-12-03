@@ -13,30 +13,22 @@ spring:
     port: 6379
     database: 0
     password: abc123
-  #####################
   #
-  #####################
   #  devtools:
   #    restart:
   #      enabled: true
   #      additional-paths: src/main/java
-  #####################
-  #JSP
-  #####################
+  #  JSP
   mvc:
     static-path-pattern: /**
 
   #    view:
   #      prefix: /WEB-INF/jsp/
   #      suffix: .jsp
-  #####################
-  #Thymeleaf
-  #####################
+  # Resources
   resources:
     static-locations: classpath:/static/
-  #####################
-  #Thymeleaf
-  #####################
+  # Thymeleaf
   thymeleaf:
     #开启模板缓存（默认值：true）
     enabled: true
