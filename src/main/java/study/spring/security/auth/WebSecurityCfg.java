@@ -85,10 +85,9 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                         return interceptor;
                     }
                 })
-                //.antMatchers("/view/**")
-                //.permitAll() //不需要权限认证
-                .anyRequest()  //任何请求
-                .authenticated() //需要身份认证
+                //.antMatchers("/view/**").permitAll() //不需要权限认证
+                .anyRequest().authenticated() //任何请求需要身份认证
+        //.anyRequest().fullyAuthenticated();
         ;
         //（▲）
         http.exceptionHandling()
