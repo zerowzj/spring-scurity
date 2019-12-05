@@ -1,4 +1,4 @@
-package study.spring.security.auth;
+package study.springsecurity.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -17,9 +17,9 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-import study.spring.security.auth.filter.WatchDogFilter;
-import study.spring.security.auth.session.CustomExpiredSessionStrategy;
-import study.spring.security.auth.session.CustomInvalidSessionStrategy;
+import study.springsecurity.auth.filter.WatchDogFilter;
+import study.springsecurity.auth.session.CustomExpiredSessionStrategy;
+import study.springsecurity.auth.session.CustomInvalidSessionStrategy;
 
 @Configuration
 public class WebSecurityCfg extends WebSecurityConfigurerAdapter {

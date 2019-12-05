@@ -1,4 +1,4 @@
-package study.spring.security.auth.details;
+package study.springsecurity.auth.details;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;

@@ -1,8 +1,8 @@
-package study.spring.security;
+package study.springsecurity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import study.spring.security.support.SpringBootCfg;
+import study.springsecurity.support.SpringBootCfg;
 
 public class Startup {
 

@@ -1,4 +1,4 @@
-package study.spring.security.auth.access;
+package study.springsecurity.auth.access;
 
 import com.google.common.collect.Lists;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package study.spring.security.auth.details;
+package study.springsecurity.auth.details;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

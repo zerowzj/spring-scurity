@@ -1,4 +1,4 @@
-package study.spring.security.support;
+package study.springsecurity.support;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;

@@ -1,4 +1,4 @@
-package study.spring.security.auth.session;
+package study.springsecurity.auth.session;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

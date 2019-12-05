@@ -1,4 +1,4 @@
-package study.spring.security.support.exception;
+package study.springsecurity.support.exception;
 
 import com.google.common.collect.Maps;
 import org.slf4j.Logger;

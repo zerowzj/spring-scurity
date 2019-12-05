@@ -1,4 +1,4 @@
-package study.spring.security.auth.filter;
+package study.springsecurity.auth.filter;
 
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
