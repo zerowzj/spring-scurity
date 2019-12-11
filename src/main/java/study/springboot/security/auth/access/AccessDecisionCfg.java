@@ -1,4 +1,4 @@
-package study.springsecurity.auth.access;
+package study.springboot.security.auth.access;
 
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
