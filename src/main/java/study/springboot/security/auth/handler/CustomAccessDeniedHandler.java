@@ -1,5 +1,6 @@
 package study.springboot.security.auth.handler;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
@@ -12,10 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+@Slf4j
 @Component
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(CustomAccessDeniedHandler.class);
 
     private String errorPage = "/erro";
 
@@ -27,7 +27,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
         // Set the 403 status code.
 //        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         if ("XMLHttpRequest".equals(ajaxRequest)) {
-            LOGGER.info("ssssssssssssssssssss");
+            log.info("ssssssssssssssssssss");
         } else {
 //            // Put exception into request scope (perhaps of use to a view)
 //            request.setAttribute(WebAttributes.ACCESS_DENIED_403, accessDeniedException);
