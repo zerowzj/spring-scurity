@@ -1,5 +1,6 @@
 package study.springboot.security.auth.filter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -14,10 +15,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @Component
 public class WatchDogFilter extends OncePerRequestFilter {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(WatchDogFilter.class);
 
     /**
      * Session Key列表
@@ -28,7 +28,7 @@ public class WatchDogFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //设置日志跟踪编号
         MDC.put("id", String.valueOf(UUID.randomUUID().hashCode() & 0x7fffffff));
-        LOGGER.info("请求url：{}", request.getRequestURI());
+        log.info("请求url：{}", request.getRequestURI());
 //        if (sessionKeyLt != null && !sessionKeyLt.isEmpty()) {
 //            //
 //            return;
