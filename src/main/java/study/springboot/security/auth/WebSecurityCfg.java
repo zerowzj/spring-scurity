@@ -89,7 +89,7 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated() //任何请求需要身份认证
         //.anyRequest().fullyAuthenticated();
         ;
-        //（▲）
+        //（▲）异常处理
         http.exceptionHandling()
                 .accessDeniedPage("/403.html") //无权页面
         //.accessDeniedHandler(accessDeniedHandler) //无权处理器
@@ -114,13 +114,13 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .expiredSessionStrategy(expiredSessionStrategy) //设置Session过期处理策略
                 .maxSessionsPreventsLogin(true) //前登录禁后登录
         ;
-        //（▲）
-        http.csrf().disable() //关闭跨站请求防护
-        ;
-        //（▲）
+        //（▲）头部
         http.headers()
                 .frameOptions()
                 .sameOrigin();
+        //（▲）
+        http.csrf().disable() //关闭跨站请求防护
+        ;
     }
 
     /**
